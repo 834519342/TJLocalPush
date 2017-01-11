@@ -1,0 +1,530 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2B7A54471E26328700875BCB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A54461E26328700875BCB /* main.m */; };
+		2B7A544A1E26328700875BCB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A54491E26328700875BCB /* AppDelegate.m */; };
+		2B7A544D1E26328700875BCB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A544C1E26328700875BCB /* ViewController.m */; };
+		2B7A54501E26328700875BCB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B7A544E1E26328700875BCB /* Main.storyboard */; };
+		2B7A54521E26328700875BCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7A54511E26328700875BCB /* Assets.xcassets */; };
+		2B7A54551E26328700875BCB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B7A54531E26328700875BCB /* LaunchScreen.storyboard */; };
+		2B7A54601E26328800875BCB /* TJLocalPushTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A545F1E26328800875BCB /* TJLocalPushTests.m */; };
+		2B7A546B1E26328800875BCB /* TJLocalPushUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A546A1E26328800875BCB /* TJLocalPushUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2B7A545C1E26328800875BCB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2B7A543A1E26328700875BCB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2B7A54411E26328700875BCB;
+			remoteInfo = TJLocalPush;
+		};
+		2B7A54671E26328800875BCB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2B7A543A1E26328700875BCB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2B7A54411E26328700875BCB;
+			remoteInfo = TJLocalPush;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2B7A54421E26328700875BCB /* TJLocalPush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TJLocalPush.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B7A54461E26328700875BCB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2B7A54481E26328700875BCB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		2B7A54491E26328700875BCB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		2B7A544B1E26328700875BCB /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		2B7A544C1E26328700875BCB /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		2B7A544F1E26328700875BCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2B7A54511E26328700875BCB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2B7A54541E26328700875BCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2B7A54561E26328800875BCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2B7A545B1E26328800875BCB /* TJLocalPushTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TJLocalPushTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B7A545F1E26328800875BCB /* TJLocalPushTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TJLocalPushTests.m; sourceTree = "<group>"; };
+		2B7A54611E26328800875BCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2B7A54661E26328800875BCB /* TJLocalPushUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TJLocalPushUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B7A546A1E26328800875BCB /* TJLocalPushUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TJLocalPushUITests.m; sourceTree = "<group>"; };
+		2B7A546C1E26328800875BCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2B7A543F1E26328700875BCB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2B7A54581E26328800875BCB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2B7A54631E26328800875BCB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2B7A54391E26328700875BCB = {
+			isa = PBXGroup;
+			children = (
+				2B7A54441E26328700875BCB /* TJLocalPush */,
+				2B7A545E1E26328800875BCB /* TJLocalPushTests */,
+				2B7A54691E26328800875BCB /* TJLocalPushUITests */,
+				2B7A54431E26328700875BCB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2B7A54431E26328700875BCB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2B7A54421E26328700875BCB /* TJLocalPush.app */,
+				2B7A545B1E26328800875BCB /* TJLocalPushTests.xctest */,
+				2B7A54661E26328800875BCB /* TJLocalPushUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2B7A54441E26328700875BCB /* TJLocalPush */ = {
+			isa = PBXGroup;
+			children = (
+				2B7A54481E26328700875BCB /* AppDelegate.h */,
+				2B7A54491E26328700875BCB /* AppDelegate.m */,
+				2B7A544B1E26328700875BCB /* ViewController.h */,
+				2B7A544C1E26328700875BCB /* ViewController.m */,
+				2B7A544E1E26328700875BCB /* Main.storyboard */,
+				2B7A54511E26328700875BCB /* Assets.xcassets */,
+				2B7A54531E26328700875BCB /* LaunchScreen.storyboard */,
+				2B7A54561E26328800875BCB /* Info.plist */,
+				2B7A54451E26328700875BCB /* Supporting Files */,
+			);
+			path = TJLocalPush;
+			sourceTree = "<group>";
+		};
+		2B7A54451E26328700875BCB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2B7A54461E26328700875BCB /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2B7A545E1E26328800875BCB /* TJLocalPushTests */ = {
+			isa = PBXGroup;
+			children = (
+				2B7A545F1E26328800875BCB /* TJLocalPushTests.m */,
+				2B7A54611E26328800875BCB /* Info.plist */,
+			);
+			path = TJLocalPushTests;
+			sourceTree = "<group>";
+		};
+		2B7A54691E26328800875BCB /* TJLocalPushUITests */ = {
+			isa = PBXGroup;
+			children = (
+				2B7A546A1E26328800875BCB /* TJLocalPushUITests.m */,
+				2B7A546C1E26328800875BCB /* Info.plist */,
+			);
+			path = TJLocalPushUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2B7A54411E26328700875BCB /* TJLocalPush */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2B7A546F1E26328800875BCB /* Build configuration list for PBXNativeTarget "TJLocalPush" */;
+			buildPhases = (
+				2B7A543E1E26328700875BCB /* Sources */,
+				2B7A543F1E26328700875BCB /* Frameworks */,
+				2B7A54401E26328700875BCB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TJLocalPush;
+			productName = TJLocalPush;
+			productReference = 2B7A54421E26328700875BCB /* TJLocalPush.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2B7A545A1E26328800875BCB /* TJLocalPushTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2B7A54721E26328800875BCB /* Build configuration list for PBXNativeTarget "TJLocalPushTests" */;
+			buildPhases = (
+				2B7A54571E26328800875BCB /* Sources */,
+				2B7A54581E26328800875BCB /* Frameworks */,
+				2B7A54591E26328800875BCB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2B7A545D1E26328800875BCB /* PBXTargetDependency */,
+			);
+			name = TJLocalPushTests;
+			productName = TJLocalPushTests;
+			productReference = 2B7A545B1E26328800875BCB /* TJLocalPushTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2B7A54651E26328800875BCB /* TJLocalPushUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2B7A54751E26328800875BCB /* Build configuration list for PBXNativeTarget "TJLocalPushUITests" */;
+			buildPhases = (
+				2B7A54621E26328800875BCB /* Sources */,
+				2B7A54631E26328800875BCB /* Frameworks */,
+				2B7A54641E26328800875BCB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2B7A54681E26328800875BCB /* PBXTargetDependency */,
+			);
+			name = TJLocalPushUITests;
+			productName = TJLocalPushUITests;
+			productReference = 2B7A54661E26328800875BCB /* TJLocalPushUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2B7A543A1E26328700875BCB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = "谭杰";
+				TargetAttributes = {
+					2B7A54411E26328700875BCB = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+					};
+					2B7A545A1E26328800875BCB = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 2B7A54411E26328700875BCB;
+					};
+					2B7A54651E26328800875BCB = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 2B7A54411E26328700875BCB;
+					};
+				};
+			};
+			buildConfigurationList = 2B7A543D1E26328700875BCB /* Build configuration list for PBXProject "TJLocalPush" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2B7A54391E26328700875BCB;
+			productRefGroup = 2B7A54431E26328700875BCB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2B7A54411E26328700875BCB /* TJLocalPush */,
+				2B7A545A1E26328800875BCB /* TJLocalPushTests */,
+				2B7A54651E26328800875BCB /* TJLocalPushUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2B7A54401E26328700875BCB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B7A54551E26328700875BCB /* LaunchScreen.storyboard in Resources */,
+				2B7A54521E26328700875BCB /* Assets.xcassets in Resources */,
+				2B7A54501E26328700875BCB /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2B7A54591E26328800875BCB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2B7A54641E26328800875BCB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2B7A543E1E26328700875BCB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B7A544D1E26328700875BCB /* ViewController.m in Sources */,
+				2B7A544A1E26328700875BCB /* AppDelegate.m in Sources */,
+				2B7A54471E26328700875BCB /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2B7A54571E26328800875BCB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B7A54601E26328800875BCB /* TJLocalPushTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2B7A54621E26328800875BCB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B7A546B1E26328800875BCB /* TJLocalPushUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2B7A545D1E26328800875BCB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2B7A54411E26328700875BCB /* TJLocalPush */;
+			targetProxy = 2B7A545C1E26328800875BCB /* PBXContainerItemProxy */;
+		};
+		2B7A54681E26328800875BCB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2B7A54411E26328700875BCB /* TJLocalPush */;
+			targetProxy = 2B7A54671E26328800875BCB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2B7A544E1E26328700875BCB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2B7A544F1E26328700875BCB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		2B7A54531E26328700875BCB /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2B7A54541E26328700875BCB /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2B7A546D1E26328800875BCB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2B7A546E1E26328800875BCB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2B7A54701E26328800875BCB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = TJLocalPush/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tj.TJLocalPush;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		2B7A54711E26328800875BCB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = TJLocalPush/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tj.TJLocalPush;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		2B7A54731E26328800875BCB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = TJLocalPushTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tj.TJLocalPushTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TJLocalPush.app/TJLocalPush";
+			};
+			name = Debug;
+		};
+		2B7A54741E26328800875BCB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = TJLocalPushTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tj.TJLocalPushTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TJLocalPush.app/TJLocalPush";
+			};
+			name = Release;
+		};
+		2B7A54761E26328800875BCB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = TJLocalPushUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tj.TJLocalPushUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = TJLocalPush;
+			};
+			name = Debug;
+		};
+		2B7A54771E26328800875BCB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = TJLocalPushUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tj.TJLocalPushUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = TJLocalPush;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2B7A543D1E26328700875BCB /* Build configuration list for PBXProject "TJLocalPush" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B7A546D1E26328800875BCB /* Debug */,
+				2B7A546E1E26328800875BCB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2B7A546F1E26328800875BCB /* Build configuration list for PBXNativeTarget "TJLocalPush" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B7A54701E26328800875BCB /* Debug */,
+				2B7A54711E26328800875BCB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		2B7A54721E26328800875BCB /* Build configuration list for PBXNativeTarget "TJLocalPushTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B7A54731E26328800875BCB /* Debug */,
+				2B7A54741E26328800875BCB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		2B7A54751E26328800875BCB /* Build configuration list for PBXNativeTarget "TJLocalPushUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B7A54761E26328800875BCB /* Debug */,
+				2B7A54771E26328800875BCB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2B7A543A1E26328700875BCB /* Project object */;
+}
