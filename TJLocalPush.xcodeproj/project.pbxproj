@@ -451,6 +451,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TJLocalPush/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tj.TJLocalPush;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -462,6 +463,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TJLocalPush/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tj.TJLocalPush;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -533,6 +535,7 @@
 				2B7A54711E26328800875BCB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2B7A54721E26328800875BCB /* Build configuration list for PBXNativeTarget "TJLocalPushTests" */ = {
 			isa = XCConfigurationList;
@@ -541,6 +544,7 @@
 				2B7A54741E26328800875BCB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2B7A54751E26328800875BCB /* Build configuration list for PBXNativeTarget "TJLocalPushUITests" */ = {
 			isa = XCConfigurationList;
@@ -549,6 +553,7 @@
 				2B7A54771E26328800875BCB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

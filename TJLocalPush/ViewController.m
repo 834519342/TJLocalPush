@@ -21,9 +21,14 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"本地推送";
     
-    [TJLocalPush PushLocalNotificationTitle:@"zxy" Body:@"zzxxyy" Sound:nil AlertTime:10 withCompletionHandler:^(NSError *error) {
+    [TJLocalPush PushLocalNotificationTitle:@"iOS10以上" Body:@"iOS10以上测试2" Sound:nil AlertTime:10 withCompletionHandler:^(NSError *error) {
         
-        NSLog(@"error:%@",error);
+        NSLog(@"ViewController:error:%@",error);
+    }];
+    
+    [TJLocalPush PushLocalNotificationTitle:@"iOS10以上" Body:@"iOS10以上测试1" Sound:nil AlertTime:5 withCompletionHandler:^(NSError *error) {
+        
+        NSLog(@"App:error:%@",error);
     }];
 
 }

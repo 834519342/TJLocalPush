@@ -36,12 +36,6 @@
             if (completionHandler) {
                 completionHandler(granted, error);
             }
-            
-            if (granted) {
-                NSLog(@"YES");
-            }else {
-                NSLog(@"NO");
-            }
         }];
     }
 }
@@ -57,6 +51,9 @@
     }else {
         content.sound = [UNNotificationSound defaultSound];
     }
+    //添加角标
+    content.badge = [[NSNumber numberWithInt:1] copy];
+    
     
     //在alertTime后推送本地通知
     UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:alertTime repeats:NO];
@@ -102,46 +99,50 @@
         UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:type categories:nil];
         
         [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-        
+        if (success) {
+            success(YES,nil);
+        }
         return YES;
     }
-    
+    if (success) {
+        success(YES,nil);
+    }
     return NO;
 }
 
 //添加本地通知
-+ (void)PushLocalNotificationMessage:(NSString *)message FireDate:(NSDate *)fireDate UserInfo:(NSDictionary *)userInfo NotificationInfo:(void(^)(BOOL success, UILocalNotification *localNotification))info
++ (void)PushLocalNotificationAlertTitle:(NSString *)alertTitle AlertBody:(NSString *)alertBody FireDate:(NSDate *)fireDate UserInfo:(NSDictionary *)userInfo NotificationInfo:(void(^)(BOOL success, UILocalNotification *localNotification))info;
 {
-    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        //推送对象
-        UILocalNotification *notification = [[UILocalNotification alloc] init];
-        if (notification) {
-            //定义本地通知对象
-            notification.fireDate = fireDate; //通知时间
-            notification.repeatInterval = REPEATINTERVAL; //设置重复提示间隔
-            notification.repeatCalendar = [NSCalendar currentCalendar]; //当前日历，使用前要设置好时区等信息，以便能够自动同步时间
-            
-            //设置通知属性
-            notification.alertBody = message; //消息内容
-            notification.applicationIconBadgeNumber = 1; //应用程序消息数+1
-            notification.alertAction = @"打开应用"; //待机界面的滑动动作提示
-            notification.alertLaunchImage = @"Default"; //通过点击通知打开应用时的启动图，这里使用程序启动图片
-            notification.soundName = UILocalNotificationDefaultSoundName; //收到通知时播放的声音，默认消息声音
-            
-            //设置用户信息
-            notification.userInfo = userInfo; //绑定到通知上的其他附加信息
-            
-            //调用通知
-            [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-            
-            if (info) {
-                info(YES,notification);
-            }
-        }else {
-            info(NO,nil);
-        }
+    //推送对象
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    if (notification) {
+        //定义本地通知对象
+        notification.fireDate = fireDate; //通知时间
+        notification.repeatInterval = REPEATINTERVAL; //设置重复提示间隔
+        notification.timeZone = [NSTimeZone defaultTimeZone]; // 使用本地时区
+        notification.repeatCalendar = [NSCalendar currentCalendar]; //当前日历，使用前要设置好时区等信息，以便能够自动同步时间
         
-    });
+        //设置通知属性
+        notification.alertTitle = alertTitle; //推送标题
+        notification.alertBody = alertBody; //消息内容
+        notification.applicationIconBadgeNumber++; //应用程序消息数+1
+        notification.alertAction = @"打开应用"; //待机界面的滑动动作提示
+        notification.alertLaunchImage = @"Default"; //通过点击通知打开应用时的启动图，这里使用程序启动图片
+        notification.soundName = UILocalNotificationDefaultSoundName; //收到通知时播放的声音，默认消息声音
+        
+        //设置用户信息
+        notification.userInfo = userInfo; //绑定到通知上的其他附加信息
+        
+        //调用通知
+        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+        
+        
+        if (info) {
+            info(YES,notification);
+        }
+    }else {
+        info(NO,nil);
+    }
     
 }
 

@@ -23,27 +23,58 @@
     
     self.window.backgroundColor = [UIColor whiteColor];
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[ViewController new]];
-    
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= IPHONE_10_0
     
     [TJLocalPush registLocalNotificationWithDelegate:self withCompletionHandler:^(BOOL granted, NSError *error) {
         
         NSLog(@"granted:%i error:%@",granted,error);
         
         if (granted) {
-            
-            [TJLocalPush PushLocalNotificationTitle:@"abc" Body:@"aabbcc" Sound:nil AlertTime:5 withCompletionHandler:^(NSError *error) {
-                
-                NSLog(@"error:%@",error);
-            }];
-        }
+
+        }	
         
     }];
+#endif
     
+    
+#if __IPHONE_OS_VERSION_MAX_ALLOWED < __IPHONE_10_0
+    
+    if (![TJLocalPush registLocalNotificationSuccess:nil]) {
+        
+        [TJLocalPush PushLocalNotificationAlertTitle:@"iOS10以下" AlertBody:@"iOS10以下测试1" FireDate:[[NSDate date] dateByAddingTimeInterval:10] UserInfo:@{@"a":@"a"} NotificationInfo:^(BOOL success, UILocalNotification *localNotification) {
+            
+        }];
+    }
+    
+#endif
+
     return YES;
 }
 
+#if __IPHONE_OS_VERSION_MAX_ALLOWED < __IPHONE_10_0
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
+{
+    if ([UIApplication sharedApplication].currentUserNotificationSettings.types != UIUserNotificationTypeNone) {
+        [TJLocalPush PushLocalNotificationAlertTitle:@"iOS10以下" AlertBody:@"iOS10以下测试2" FireDate:[[NSDate date] dateByAddingTimeInterval:10.0] UserInfo:@{@"a":@"a"} NotificationInfo:^(BOOL success, UILocalNotification *localNotification) {
+            
+        }];
+    }
+}
+
+- (void) application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    NSLog(@"iOS10以下版本推送:%@",notification.alertBody);
+    
+    [TJLocalPush removeLocalNotification:notification];
+    
+}
+
+#endif
+
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= IPHONE_10_0
 #pragma mark - UNUserNotificationCenterDelegate
-//在展示通知前进行处理，即有机会在展示通知前再修改通知内容
+//前台即将显示推送
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler __IOS_AVAILABLE(10.0) __TVOS_AVAILABLE(10.0) __WATCHOS_AVAILABLE(3.0)
 {
     //1. 处理通知
@@ -54,16 +85,16 @@
                       UNNotificationPresentationOptionAlert);
 }
 
-//点击通知回调
+//后台推送点击通知
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void(^)())completionHandler __IOS_AVAILABLE(10.0) __WATCHOS_AVAILABLE(3.0) __TVOS_PROHIBITED
 {
     completionHandler(UNNotificationPresentationOptionBadge |
                       UNNotificationPresentationOptionSound |
                       UNNotificationPresentationOptionAlert);
-    NSLog(@"点击了通知");
+    NSLog(@"iOS10及以上版本推送");
 }
 
-
+#endif
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -79,6 +110,7 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];//进入前台清除消息数
 }
 
 

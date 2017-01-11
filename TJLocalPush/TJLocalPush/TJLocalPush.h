@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 #import <UserNotifications/UserNotifications.h>
 
-#define REPEATINTERVAL NSCalendarUnitMinute //间隔一分钟重复提示
+#define REPEATINTERVAL NSCalendarUnitYear
 
 @interface TJLocalPush : NSObject
 
@@ -61,10 +61,12 @@
 
 
 /** 添加本地通知
- *  @param message 推送内容
+ *  @param alertTitle 推送标题
+ *  @param alertBody 推送内容
+ *  @param fireDate 推送时间
  *  @param info 添加结果
  */
-+ (void)PushLocalNotificationMessage:(NSString *)message FireDate:(NSDate *)fireDate UserInfo:(NSDictionary *)userInfo NotificationInfo:(void(^)(BOOL success, UILocalNotification *localNotification))info;
++ (void)PushLocalNotificationAlertTitle:(NSString *)alertTitle AlertBody:(NSString *)alertBody FireDate:(NSDate *)fireDate UserInfo:(NSDictionary *)userInfo NotificationInfo:(void(^)(BOOL success, UILocalNotification *localNotification))info;
 
 
 /** 移除指定的本地通知
