@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "TJLocalPush.h"
 
 @interface ViewController ()
 
@@ -17,6 +18,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.title = @"本地推送";
+    
+    [TJLocalPush PushLocalNotificationTitle:@"zxy" Body:@"zzxxyy" Sound:nil AlertTime:10 withCompletionHandler:^(NSError *error) {
+        
+        NSLog(@"error:%@",error);
+    }];
+
 }
 
 

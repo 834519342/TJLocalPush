@@ -15,6 +15,8 @@
 		2B7A54551E26328700875BCB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B7A54531E26328700875BCB /* LaunchScreen.storyboard */; };
 		2B7A54601E26328800875BCB /* TJLocalPushTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A545F1E26328800875BCB /* TJLocalPushTests.m */; };
 		2B7A546B1E26328800875BCB /* TJLocalPushUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A546A1E26328800875BCB /* TJLocalPushUITests.m */; };
+		2B7A547B1E2632C100875BCB /* TJLocalPush.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A547A1E2632C100875BCB /* TJLocalPush.m */; };
+		2B7A547E1E2633A500875BCB /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B7A547D1E2633A500875BCB /* UserNotifications.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,9 @@
 		2B7A54661E26328800875BCB /* TJLocalPushUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TJLocalPushUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B7A546A1E26328800875BCB /* TJLocalPushUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TJLocalPushUITests.m; sourceTree = "<group>"; };
 		2B7A546C1E26328800875BCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2B7A54791E2632C100875BCB /* TJLocalPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJLocalPush.h; sourceTree = "<group>"; };
+		2B7A547A1E2632C100875BCB /* TJLocalPush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJLocalPush.m; sourceTree = "<group>"; };
+		2B7A547D1E2633A500875BCB /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B7A547E1E2633A500875BCB /* UserNotifications.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +91,7 @@
 				2B7A545E1E26328800875BCB /* TJLocalPushTests */,
 				2B7A54691E26328800875BCB /* TJLocalPushUITests */,
 				2B7A54431E26328700875BCB /* Products */,
+				2B7A547C1E2633A500875BCB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,6 +108,7 @@
 		2B7A54441E26328700875BCB /* TJLocalPush */ = {
 			isa = PBXGroup;
 			children = (
+				2B7A54781E2632AA00875BCB /* TJLocalPush */,
 				2B7A54481E26328700875BCB /* AppDelegate.h */,
 				2B7A54491E26328700875BCB /* AppDelegate.m */,
 				2B7A544B1E26328700875BCB /* ViewController.h */,
@@ -138,6 +146,23 @@
 				2B7A546C1E26328800875BCB /* Info.plist */,
 			);
 			path = TJLocalPushUITests;
+			sourceTree = "<group>";
+		};
+		2B7A54781E2632AA00875BCB /* TJLocalPush */ = {
+			isa = PBXGroup;
+			children = (
+				2B7A54791E2632C100875BCB /* TJLocalPush.h */,
+				2B7A547A1E2632C100875BCB /* TJLocalPush.m */,
+			);
+			path = TJLocalPush;
+			sourceTree = "<group>";
+		};
+		2B7A547C1E2633A500875BCB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2B7A547D1E2633A500875BCB /* UserNotifications.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -274,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B7A544D1E26328700875BCB /* ViewController.m in Sources */,
+				2B7A547B1E2632C100875BCB /* TJLocalPush.m in Sources */,
 				2B7A544A1E26328700875BCB /* AppDelegate.m in Sources */,
 				2B7A54471E26328700875BCB /* main.m in Sources */,
 			);
