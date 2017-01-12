@@ -6,18 +6,17 @@
 //  Copyright © 2017年 谭杰. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 #import <UserNotifications/UserNotifications.h>
 
 #define REPEATINTERVAL NSCalendarUnitYear
 
 @interface TJLocalPush : NSObject
-
 /*
  * iOS10及以上通知方法 ************************************************************
  */
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= IPHONE_10_0
+//#if __IPHONE_OS_VERSION_MAX_ALLOWED >= IPHONE_10_0
 
 /** 获取通知中心权限
  *  @return 通知中心对象
@@ -37,14 +36,14 @@
  *  @param alertTime 推送时间
  *  @param completionHandler 结果
  */
-+ (void)PushLocalNotificationTitle:(NSString *)title Body:(NSString *)body Sound:(NSString *)sound AlertTime:(NSInteger)alertTime withCompletionHandler:(void(^)(NSError *error))completionHandler;
++ (void)pushLocalNotificationTitle:(NSString *)title Body:(NSString *)body Sound:(NSString *)sound AlertTime:(NSInteger)alertTime UserInfo:(NSDictionary *)userInfo withCompletionHandler:(void(^)(NSError *error))completionHandler;
 
 /** 获取当前推送对象属性设置，只读，不能更改。
  */
 + (void)getNotificationSettingsWithCompletionHandler:(void(^)(UNNotificationSettings *settings))completionHandler;
 
 
-#endif
+//#endif
 //endif ************************************************************
 
 
@@ -52,7 +51,8 @@
 /*
  * iOS10以下通知方法 ************************************************************
  */
-#if __IPHONE_OS_VERSION_MAX_ALLOWED < __IPHONE_10_0
+//#if __IPHONE_OS_VERSION_MAX_ALLOWED < __IPHONE_10_0
+
 
 /** 注册本地通知
  *  @param success 注册结果
@@ -66,19 +66,20 @@
  *  @param fireDate 推送时间
  *  @param info 添加结果
  */
-+ (void)PushLocalNotificationAlertTitle:(NSString *)alertTitle AlertBody:(NSString *)alertBody FireDate:(NSDate *)fireDate UserInfo:(NSDictionary *)userInfo NotificationInfo:(void(^)(BOOL success, UILocalNotification *localNotification))info;
++ (void)pushLocalNotificationAlertTitle:(NSString *)alertTitle AlertBody:(NSString *)alertBody FireDate:(NSDate *)fireDate UserInfo:(NSDictionary *)userInfo NotificationInfo:(void(^)(BOOL success,UILocalNotification *localNotification))info;
 
 
 /** 移除指定的本地通知
  */
-+ (void)removeLocalNotification:(UILocalNotification *)sender;
++ (void)removeLocalNotification:(UILocalNotification *)notification;
+
 
 /** 移除所有本地通知
  */
 + (void)removeAllLocalNotification;
 
-#endif
-//endif ************************************************************
 
+//#endif
+//endif ************************************************************
 
 @end

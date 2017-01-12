@@ -19,20 +19,36 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.view.backgroundColor = [UIColor whiteColor];
+    self.navigationController.navigationBar.translucent = NO;
     self.title = @"本地推送";
     
-    [TJLocalPush PushLocalNotificationTitle:@"iOS10以上" Body:@"iOS10以上测试2" Sound:nil AlertTime:10 withCompletionHandler:^(NSError *error) {
-        
-        NSLog(@"ViewController:error:%@",error);
-    }];
+    UIButton *btn1 = [UIButton buttonWithType:UIButtonTypeSystem];
+    btn1.frame = CGRectMake(0, 0, self.view.frame.size.width, 40);
+    [btn1 setTitle:@"iOS9推送" forState:UIControlStateNormal];
+    [btn1 addTarget:self action:@selector(iOS9Push:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn1];
     
-    [TJLocalPush PushLocalNotificationTitle:@"iOS10以上" Body:@"iOS10以上测试1" Sound:nil AlertTime:5 withCompletionHandler:^(NSError *error) {
-        
-        NSLog(@"App:error:%@",error);
-    }];
-
+    UIButton *btn2 = [UIButton buttonWithType:UIButtonTypeSystem];
+    btn2.frame = CGRectMake(0, 60, self.view.frame.size.width, 40);
+    [btn2 setTitle:@"iOS10推送" forState:UIControlStateNormal];
+    [btn2 addTarget:self action:@selector(iOS10Push:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn2];
+    
 }
 
+- (void)iOS9Push:(UIButton *)btn
+{
+    [TJLocalPush pushLocalNotificationAlertTitle:@"iOS9Push" AlertBody:@"iOS9PushMessage" FireDate:[NSDate dateWithTimeIntervalSinceNow:10] UserInfo:@{@"a":@"a"} NotificationInfo:^(BOOL success, UILocalNotification *localNotification) {
+        NSLog(@"iOS9Push:error = %i",success);
+    }];
+}
+
+- (void)iOS10Push:(UIButton *)btn
+{
+    [TJLocalPush pushLocalNotificationTitle:@"iOS10Push" Body:@"iOS10PushMessage" Sound:nil AlertTime:10 UserInfo:@{@"a":@"a"} withCompletionHandler:^(NSError *error) {
+        NSLog(@"iOS10Push:error = %@",error);
+    }];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
