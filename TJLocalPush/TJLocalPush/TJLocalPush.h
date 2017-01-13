@@ -8,11 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+
+#ifdef NSFoundationVersionNumber_iOS_9_x_Max
 #import <UserNotifications/UserNotifications.h>
+#endif
+
 
 #import "TJNotificationModel.h"
 
-#define REPEATINTERVAL NSCalendarUnitYear
+#define REPEATINTERVAL NSCalendarUnitYear //iOS9推送重复周期
 
 @interface TJLocalPush : NSObject
 /*

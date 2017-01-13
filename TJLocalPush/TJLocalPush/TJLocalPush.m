@@ -47,18 +47,47 @@
     //创建一个包含待通知内容的 UNMutableNotificationContent 对象，注意不是UNNotificationContent，此对象为不可变对象。
     UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
     //推送标题
-    content.title = [NSString localizedUserNotificationStringForKey:model.title arguments:nil];
+    if (model.title) {
+        content.title = [NSString localizedUserNotificationStringForKey:model.title arguments:nil];
+    }
+    
     //推送内容
-    content.body = [NSString localizedUserNotificationStringForKey:model.body arguments:nil];
-    content.subtitle = model.subtitle;
+    if (model.body) {
+        content.body = [NSString localizedUserNotificationStringForKey:model.body arguments:nil];
+    }
+    
+    //详细内容
+    if (model.subtitle) {
+        content.subtitle = model.subtitle;
+    }
+    
     //附带信息
-    content.userInfo = model.userInfo;
+    if (model.userInfo) {
+        content.userInfo = model.userInfo;
+    }
+    
+    //附带媒体信息
+    if (model.attachments) {
+        content.attachments = model.attachments;
+    }
+    
+    //启动图
+    if (model.launchImageName) {
+        content.launchImageName = model.launchImageName;
+    }
+    
     //推送声音
     if (model.sound) {
         content.sound = [UNNotificationSound soundNamed:model.sound];
     }else {
         content.sound = [UNNotificationSound defaultSound];
     }
+    
+    //设置拓展ID
+    if (model.launchImageName) {
+        content.launchImageName = model.launchImageName;
+    }
+    
     //应用角标+1
     content.badge = [NSNumber numberWithInt:model.badge];
     
@@ -136,15 +165,26 @@
         
         //设置通知属性
         //推送标题
-        notification.alertTitle = model.title;
+        if (model.title) {
+            notification.alertTitle = model.title;
+        }
+        
         //消息内容
-        notification.alertBody = model.body;
+        if (model.body) {
+            notification.alertBody = model.body;
+        }
+        
         //应用程序消息数++
         notification.applicationIconBadgeNumber += model.badge;
+        
         //待机界面的滑动动作提示
         notification.alertAction = @"打开应用";
+        
         //通过点击通知打开应用时的启动图，这里使用程序启动图片
-        notification.alertLaunchImage = model.launchImageName;
+        if (model.launchImageName) {
+            notification.alertLaunchImage = model.launchImageName;
+        }
+        
         //收到通知时播放的声音，默认消息声音
         if (model.sound) {
             notification.soundName = model.sound;
@@ -153,7 +193,9 @@
         }
         
         //设置用户信息
-        notification.userInfo = model.userInfo; //绑定到通知上的其他附加信息
+        if (model.userInfo) {
+            notification.userInfo = model.userInfo; //绑定到通知上的其他附加信息
+        }
         
         //调用通知
         [[UIApplication sharedApplication] scheduleLocalNotification:notification];
