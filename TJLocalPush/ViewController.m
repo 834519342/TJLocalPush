@@ -38,14 +38,27 @@
 
 - (void)iOS9Push:(UIButton *)btn
 {
-    [TJLocalPush pushLocalNotificationAlertTitle:@"iOS9Push" AlertBody:@"iOS9PushMessage" FireDate:[NSDate dateWithTimeIntervalSinceNow:10] UserInfo:@{@"a":@"a"} NotificationInfo:^(BOOL success, UILocalNotification *localNotification) {
+    TJNotificationModel *model = [[TJNotificationModel alloc] init];
+    model.title = @"iOS9Push";
+    model.body = @"iOS9PushMessage";
+    model.timeInterval = 10;
+    model.userInfo = @{@"a":@"a"};
+    
+    [TJLocalPush pushLocalNotificationModel:model NotificationInfo:^(BOOL success, UILocalNotification *localNotification) {
+        
         NSLog(@"iOS9Push:error = %i",success);
     }];
 }
 
 - (void)iOS10Push:(UIButton *)btn
 {
-    [TJLocalPush pushLocalNotificationTitle:@"iOS10Push" Body:@"iOS10PushMessage" Sound:nil AlertTime:10 UserInfo:@{@"a":@"a"} withCompletionHandler:^(NSError *error) {
+    TJNotificationModel *model = [[TJNotificationModel alloc] init];
+    model.title = @"iOS10Push";
+    model.body = @"iOS10PushMessage";
+    model.timeInterval = 10;
+    model.userInfo = @{@"b":@"b"};
+    
+    [TJLocalPush pushLocalNotificationModel:model withCompletionHandler:^(NSError *error) {
         NSLog(@"iOS10Push:error = %@",error);
     }];
 }

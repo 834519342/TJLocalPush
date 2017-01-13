@@ -42,29 +42,30 @@
     }
 }
 
-+ (void)pushLocalNotificationTitle:(NSString *)title Body:(NSString *)body Sound:(NSString *)sound AlertTime:(NSInteger)alertTime UserInfo:(NSDictionary *)userInfo withCompletionHandler:(void(^)(NSError *error))completionHandler;
++ (void)pushLocalNotificationModel:(TJNotificationModel *)model withCompletionHandler:(void(^)(NSError *error))completionHandler;
 {
     //创建一个包含待通知内容的 UNMutableNotificationContent 对象，注意不是UNNotificationContent，此对象为不可变对象。
     UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
     //推送标题
-    content.title = [NSString localizedUserNotificationStringForKey:title arguments:nil];
+    content.title = [NSString localizedUserNotificationStringForKey:model.title arguments:nil];
     //推送内容
-    content.body = [NSString localizedUserNotificationStringForKey:body arguments:nil];
+    content.body = [NSString localizedUserNotificationStringForKey:model.body arguments:nil];
+    content.subtitle = model.subtitle;
     //附带信息
-    content.userInfo = userInfo;
+    content.userInfo = model.userInfo;
     //推送声音
-    if (sound) {
-        content.sound = [UNNotificationSound soundNamed:sound];
+    if (model.sound) {
+        content.sound = [UNNotificationSound soundNamed:model.sound];
     }else {
         content.sound = [UNNotificationSound defaultSound];
     }
     //应用角标+1
-    content.badge = @1;
+    content.badge = [NSNumber numberWithInt:model.badge];
     
     //在alertTime后推送本地通知,repeats:是否重复
-    UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:alertTime repeats:NO];
+    UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:model.timeInterval repeats:NO];
     
-    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:title content:content trigger:trigger];
+    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:(model.categoryIdentifier == nil ? model.title :model.categoryIdentifier) content:content trigger:trigger];
     
     //添加推送成功后处理
     [[TJLocalPush PushCenter] addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
@@ -118,14 +119,14 @@
 }
 
 //添加本地通知
-+ (void)pushLocalNotificationAlertTitle:(NSString *)alertTitle AlertBody:(NSString *)alertBody FireDate:(NSDate *)fireDate UserInfo:(NSDictionary *)userInfo NotificationInfo:(void(^)(BOOL success, UILocalNotification *localNotification))info;
++ (void)pushLocalNotificationModel:(TJNotificationModel *)model NotificationInfo:(void(^)(BOOL success, UILocalNotification *localNotification))info;
 {
     //推送对象
     UILocalNotification *notification = [[UILocalNotification alloc] init];
     if (notification) {
         //定义本地通知对象
         //通知时间
-        notification.fireDate = fireDate;
+        notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:model.timeInterval];
         //设置重复提示间隔
         notification.repeatInterval = REPEATINTERVAL;
         // 使用本地时区
@@ -135,20 +136,24 @@
         
         //设置通知属性
         //推送标题
-        notification.alertTitle = alertTitle;
+        notification.alertTitle = model.title;
         //消息内容
-        notification.alertBody = alertBody;
+        notification.alertBody = model.body;
         //应用程序消息数++
-        notification.applicationIconBadgeNumber++;
+        notification.applicationIconBadgeNumber += model.badge;
         //待机界面的滑动动作提示
         notification.alertAction = @"打开应用";
         //通过点击通知打开应用时的启动图，这里使用程序启动图片
-        notification.alertLaunchImage = @"Default";
+        notification.alertLaunchImage = model.launchImageName;
         //收到通知时播放的声音，默认消息声音
-        notification.soundName = UILocalNotificationDefaultSoundName;
+        if (model.sound) {
+            notification.soundName = model.sound;
+        }else {
+            notification.soundName = UILocalNotificationDefaultSoundName;
+        }
         
         //设置用户信息
-        notification.userInfo = userInfo; //绑定到通知上的其他附加信息
+        notification.userInfo = model.userInfo; //绑定到通知上的其他附加信息
         
         //调用通知
         [[UIApplication sharedApplication] scheduleLocalNotification:notification];

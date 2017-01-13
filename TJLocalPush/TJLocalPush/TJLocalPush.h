@@ -10,6 +10,8 @@
 #import <Foundation/Foundation.h>
 #import <UserNotifications/UserNotifications.h>
 
+#import "TJNotificationModel.h"
+
 #define REPEATINTERVAL NSCalendarUnitYear
 
 @interface TJLocalPush : NSObject
@@ -30,13 +32,10 @@
 + (void)registLocalNotificationWithDelegate:(id<UNUserNotificationCenterDelegate>)delegate withCompletionHandler:(void(^)(BOOL granted, NSError *error))completionHandler;
 
 /** 发起推送
- *  @param title 推送标题
- *  @param body 推送内容
- *  @param sound 推送声音文件
- *  @param alertTime 推送时间
+ *  @param model 推送对象
  *  @param completionHandler 结果
  */
-+ (void)pushLocalNotificationTitle:(NSString *)title Body:(NSString *)body Sound:(NSString *)sound AlertTime:(NSInteger)alertTime UserInfo:(NSDictionary *)userInfo withCompletionHandler:(void(^)(NSError *error))completionHandler;
++ (void)pushLocalNotificationModel:(TJNotificationModel *)model withCompletionHandler:(void(^)(NSError *error))completionHandler;
 
 /** 获取当前推送对象属性设置，只读，不能更改。
  */
@@ -61,12 +60,10 @@
 
 
 /** 添加本地通知
- *  @param alertTitle 推送标题
- *  @param alertBody 推送内容
- *  @param fireDate 推送时间
+ *  @param model 推送对象
  *  @param info 添加结果
  */
-+ (void)pushLocalNotificationAlertTitle:(NSString *)alertTitle AlertBody:(NSString *)alertBody FireDate:(NSDate *)fireDate UserInfo:(NSDictionary *)userInfo NotificationInfo:(void(^)(BOOL success,UILocalNotification *localNotification))info;
++ (void)pushLocalNotificationModel:(TJNotificationModel *)model NotificationInfo:(void(^)(BOOL success,UILocalNotification *localNotification))info;
 
 
 /** 移除指定的本地通知

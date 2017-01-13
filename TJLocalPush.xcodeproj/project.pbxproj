@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B73CD021E28D77F0020EE57 /* TJNotificationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B73CD011E28D77F0020EE57 /* TJNotificationModel.m */; };
 		2B7A54471E26328700875BCB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A54461E26328700875BCB /* main.m */; };
 		2B7A544A1E26328700875BCB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A54491E26328700875BCB /* AppDelegate.m */; };
 		2B7A544D1E26328700875BCB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A544C1E26328700875BCB /* ViewController.m */; };
@@ -37,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B73CD001E28D77F0020EE57 /* TJNotificationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJNotificationModel.h; sourceTree = "<group>"; };
+		2B73CD011E28D77F0020EE57 /* TJNotificationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJNotificationModel.m; sourceTree = "<group>"; };
 		2B7A54421E26328700875BCB /* TJLocalPush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TJLocalPush.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B7A54461E26328700875BCB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2B7A54481E26328700875BCB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -153,6 +156,8 @@
 			children = (
 				2B7A54791E2632C100875BCB /* TJLocalPush.h */,
 				2B7A547A1E2632C100875BCB /* TJLocalPush.m */,
+				2B73CD001E28D77F0020EE57 /* TJNotificationModel.h */,
+				2B73CD011E28D77F0020EE57 /* TJNotificationModel.m */,
 			);
 			path = TJLocalPush;
 			sourceTree = "<group>";
@@ -299,6 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B7A544D1E26328700875BCB /* ViewController.m in Sources */,
+				2B73CD021E28D77F0020EE57 /* TJNotificationModel.m in Sources */,
 				2B7A547B1E2632C100875BCB /* TJLocalPush.m in Sources */,
 				2B7A544A1E26328700875BCB /* AppDelegate.m in Sources */,
 				2B7A54471E26328700875BCB /* main.m in Sources */,
