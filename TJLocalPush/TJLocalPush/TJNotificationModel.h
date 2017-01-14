@@ -9,7 +9,20 @@
 #import <Foundation/Foundation.h>
 #import <UserNotifications/UserNotifications.h>
 
+
+//由于iOS10推送的可更新性，还新增了一个枚举，当然，本来是不需要的，但为了测试才有的这个枚举类型
+typedef NS_ENUM(NSUInteger, TJPushMessageType)
+{
+    TJPushMessageTypeNew = 0,     /**<默认为推送新的推送通知*/
+    TJPushMessageTypeUpdate = 1,  /**<更新当前的推送通知*/
+};
+
+
 @interface TJNotificationModel : NSObject
+
+
+@property (nonatomic, readwrite) TJPushMessageType type;
+
 
 //19:共同参数，10:iOS的参数，9:iOS9的参数
 

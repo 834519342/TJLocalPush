@@ -5,6 +5,7 @@
 //  Created by 谭杰 on 2017/1/11.
 //  Copyright © 2017年 谭杰. All rights reserved.
 //
+//引用参考：http://www.2cto.com/kf/201610/552256.html
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
@@ -22,7 +23,7 @@
 /*
  * iOS10及以上通知方法 ************************************************************
  */
-//#if __IPHONE_OS_VERSION_MAX_ALLOWED >= IPHONE_10_0
+//#ifdef NSFoundationVersionNumber_iOS_9_x_Max
 
 /** 获取通知中心权限
  *  @return 通知中心对象

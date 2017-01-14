@@ -96,6 +96,11 @@
     
     UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:(model.categoryIdentifier == nil ? model.title :model.categoryIdentifier) content:content trigger:trigger];
     
+    ////如果是更新，先移除
+    if (model.type == TJPushMessageTypeUpdate) {
+        [[TJLocalPush PushCenter] removeDeliveredNotificationsWithIdentifiers:@[(model.categoryIdentifier == nil ? model.title :model.categoryIdentifier)]];
+    }
+    
     //添加推送成功后处理
     [[TJLocalPush PushCenter] addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
         if (completionHandler) {
@@ -113,6 +118,44 @@
         }
     }];
 }
+
+//默认的延时推送触发时机
++(UNTimeIntervalNotificationTrigger *)defaultTimeIntervalNotificationTrigger
+{
+    return [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:10 repeats:false];
+}
+
+// 默认的日历推送触发时机
++(UNCalendarNotificationTrigger *)defaultCalendarNotificationTrigger
+{
+    
+    NSDateComponents * dateCompents = [NSDateComponents new];
+    dateCompents.hour = 7;//表示每天的7点进行推送
+    return [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:dateCompents repeats:true];
+}
+
+//该过程通过类别UNNotificationAttachment+RITLConceniceInitialize实现
+/**
++(NSArray<UNNotificationAttachment *> *)defaultNotificationAttachmentsWithImage:(UIImage *)image
+{
+    if (image == nil) return nil;
+    
+    NSMutableArray <UNNotificationAttachment *> * attachments = [NSMutableArray arrayWithCapacity:1];
+    
+    //将image存到本地
+    [RITLPushFilesManager saveImage:image key:imageTransformPathKey];
+    
+    NSError * error;
+    
+    UNNotificationAttachment * attachment = [UNNotificationAttachment attachmentWithIdentifier:attachmentIdentifier URL:[RITLPushFilesManager imageUrlPathWithKey:imageTransformPathKey] options:nil error:&error];
+    
+    NSAssert(error == nil, error.localizedDescription);
+    
+    [attachments addObject:attachment];
+    
+    return [attachments mutableCopy];
+}
+ */
 
 //#endif
 //endif ************************************************************
@@ -178,7 +221,7 @@
         notification.applicationIconBadgeNumber += model.badge;
         
         //待机界面的滑动动作提示
-        notification.alertAction = @"打开应用";
+//        notification.alertAction = @"打开应用";
         
         //通过点击通知打开应用时的启动图，这里使用程序启动图片
         if (model.launchImageName) {
