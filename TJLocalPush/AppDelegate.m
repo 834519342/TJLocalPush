@@ -66,6 +66,21 @@
 //后台推送点击通知
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void(^)())completionHandler __IOS_AVAILABLE(10.0) __WATCHOS_AVAILABLE(3.0) __TVOS_PROHIBITED
 {
+    if ([response.actionIdentifier isEqualToString:@"foregroundActionIdentifier"])
+    {
+        //可以弹出Alert提示一下
+        [self performSelector:NSSelectorFromString(@"__showAlert:") withObject:@"我是第一个策略动作,收到了" afterDelay:0];
+        
+        completionHandler();return;
+    }
+    
+    else if([response.actionIdentifier isEqualToString:@"destructiveTextActionIdentifier"])
+    {
+        [self performSelector:NSSelectorFromString(@"__showAlert:") withObject:[NSString stringWithFormat:@"我是第二个文本动作，我输入的文字是:%@",((UNTextInputNotificationResponse *)response).userText] afterDelay:0];
+        
+        completionHandler();return;
+    }
+    
     completionHandler(UNNotificationPresentationOptionBadge |
                       UNNotificationPresentationOptionSound |
                       UNNotificationPresentationOptionAlert);

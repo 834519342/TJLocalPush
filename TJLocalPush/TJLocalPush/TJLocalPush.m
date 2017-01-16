@@ -12,7 +12,7 @@
 /*
  * iOS10及以上通知方法 ************************************************************
  */
-//#if __IPHONE_OS_VERSION_MAX_ALLOWED >= IPHONE_10_0
+//#ifdef NSFoundationVersionNumber_iOS_9_x_Max
 
 //使用 UNUserNotificationCenter 来管理通知
 + (UNUserNotificationCenter *)PushCenter
@@ -103,10 +103,27 @@
     
     //添加推送成功后处理
     [[TJLocalPush PushCenter] addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+        [TJLocalPush addDefaultCategorys];
         if (completionHandler) {
             completionHandler(error);
         }
     }];
+}
+
++(void)addDefaultCategorys
+{
+    // 设置响应
+    UNNotificationAction * foregroundAction = [UNNotificationAction actionWithIdentifier:@"foregroundActionIdentifier" title:@"收到了" options:UNNotificationActionOptionForeground];
+    
+    // 设置文本响应
+    UNTextInputNotificationAction * destructiveTextAction = [UNTextInputNotificationAction actionWithIdentifier:@"destructiveTextActionIdentifier" title:@"我想说两句" options:UNNotificationActionOptionDestructive|UNNotificationActionOptionForeground textInputButtonTitle:@"发送" textInputPlaceholder:@"想说什么?"];
+    
+    // 初始化策略对象,这里的categoryWithIdentifier一定要与需要使用Category的UNNotificationRequest的identifier匹配(相同)才可触发
+    UNNotificationCategory * category = [UNNotificationCategory categoryWithIdentifier:@"RITLRequestIdentifier" actions:@[foregroundAction,destructiveTextAction] intentIdentifiers:@[@"foregroundActionIdentifier",@"foregroundActionIdentifier",@"destructiveTextActionIdentifier"] options:UNNotificationCategoryOptionCustomDismissAction];
+    
+    //直接通过UNUserNotificationCenter设置策略即可
+    [[TJLocalPush PushCenter] setNotificationCategories:[NSSet setWithObjects:category, nil]];
+    
 }
 
 //获得推送设置
