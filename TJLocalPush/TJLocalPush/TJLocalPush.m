@@ -8,7 +8,13 @@
 
 #import "TJLocalPush.h"
 
+@interface TJLocalPush ()
+
+
+@end
+
 @implementation TJLocalPush
+
 /*
  * iOS10及以上通知方法 ************************************************************
  */
@@ -42,7 +48,13 @@
     }
 }
 
-+ (void)pushLocalNotificationModel:(TJNotificationModel *)model withCompletionHandler:(void(^)(NSError *error))completionHandler;
+//保存model
+- (void)setTempModel:(TJNotificationModel *)tempModel
+{
+    
+}
+
++ (void)pushLocalNotificationModel:(TJNotificationModel *)model withCompletionHandler:(void(^)(NSError *error, TJNotificationModel *model))completionHandler;
 {
     //创建一个包含待通知内容的 UNMutableNotificationContent 对象，注意不是UNNotificationContent，此对象为不可变对象。
     UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
@@ -91,40 +103,36 @@
     //应用角标+1
     content.badge = [NSNumber numberWithInt:model.badge];
     
+    //categoryIdentifier
+    if (model.categoryIdentifier) {
+        content.categoryIdentifier = model.categoryIdentifier;
+    }else {
+        content.categoryIdentifier = @"RequestIdentifier";
+        model.categoryIdentifier = content.categoryIdentifier;
+    }
+    
     //在alertTime后推送本地通知,repeats:是否重复
     UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:model.timeInterval repeats:NO];
     
-    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:(model.categoryIdentifier == nil ? model.title :model.categoryIdentifier) content:content trigger:trigger];
+    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:content.categoryIdentifier content:content trigger:trigger];
     
     ////如果是更新，先移除
     if (model.type == TJPushMessageTypeUpdate) {
-        [[TJLocalPush PushCenter] removeDeliveredNotificationsWithIdentifiers:@[(model.categoryIdentifier == nil ? model.title :model.categoryIdentifier)]];
+        [[TJLocalPush PushCenter] removeDeliveredNotificationsWithIdentifiers:@[content.categoryIdentifier]];
     }
     
     //添加推送成功后处理
     [[TJLocalPush PushCenter] addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
-        [TJLocalPush addDefaultCategorys];
         if (completionHandler) {
-            completionHandler(error);
+            completionHandler(error,nil);
         }
     }];
+    
+    if (completionHandler) {
+        completionHandler(nil,model);
+    }
 }
 
-+(void)addDefaultCategorys
-{
-    // 设置响应
-    UNNotificationAction * foregroundAction = [UNNotificationAction actionWithIdentifier:@"foregroundActionIdentifier" title:@"收到了" options:UNNotificationActionOptionForeground];
-    
-    // 设置文本响应
-    UNTextInputNotificationAction * destructiveTextAction = [UNTextInputNotificationAction actionWithIdentifier:@"destructiveTextActionIdentifier" title:@"我想说两句" options:UNNotificationActionOptionDestructive|UNNotificationActionOptionForeground textInputButtonTitle:@"发送" textInputPlaceholder:@"想说什么?"];
-    
-    // 初始化策略对象,这里的categoryWithIdentifier一定要与需要使用Category的UNNotificationRequest的identifier匹配(相同)才可触发
-    UNNotificationCategory * category = [UNNotificationCategory categoryWithIdentifier:@"RITLRequestIdentifier" actions:@[foregroundAction,destructiveTextAction] intentIdentifiers:@[@"foregroundActionIdentifier",@"foregroundActionIdentifier",@"destructiveTextActionIdentifier"] options:UNNotificationCategoryOptionCustomDismissAction];
-    
-    //直接通过UNUserNotificationCenter设置策略即可
-    [[TJLocalPush PushCenter] setNotificationCategories:[NSSet setWithObjects:category, nil]];
-    
-}
 
 //获得推送设置
 + (void)getNotificationSettingsWithCompletionHandler:(void (^)(UNNotificationSettings *))completionHandler

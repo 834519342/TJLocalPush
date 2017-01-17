@@ -69,14 +69,16 @@
     if ([response.actionIdentifier isEqualToString:@"foregroundActionIdentifier"])
     {
         //可以弹出Alert提示一下
-        [self performSelector:NSSelectorFromString(@"__showAlert:") withObject:@"我是第一个策略动作,收到了" afterDelay:0];
+        NSLog(@"我是第一个策略动作,收到了");
+        [self performSelector:NSSelectorFromString(@"showAlert:") withObject:@"我是第一个策略动作,收到了" afterDelay:0];
         
         completionHandler();return;
     }
     
     else if([response.actionIdentifier isEqualToString:@"destructiveTextActionIdentifier"])
     {
-        [self performSelector:NSSelectorFromString(@"__showAlert:") withObject:[NSString stringWithFormat:@"我是第二个文本动作，我输入的文字是:%@",((UNTextInputNotificationResponse *)response).userText] afterDelay:0];
+        NSLog(@"我是第二个文本动作，我输入的文字是:%@",((UNTextInputNotificationResponse *)response).userText);
+        [self performSelector:NSSelectorFromString(@"showAlert:") withObject:[NSString stringWithFormat:@"我是第二个文本动作，我输入的文字是:%@",((UNTextInputNotificationResponse *)response).userText] afterDelay:0];
         
         completionHandler();return;
     }
@@ -87,7 +89,17 @@
     NSLog(@"iOS10及以上版本推送");
 }
 
-
+- (void)showAlert:(NSString *)message
+{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"推送" message:message preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"OK");
+    } ]];
+    [self.window.rootViewController presentViewController:alert animated:YES completion:^{
+        
+    }];
+    
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

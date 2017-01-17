@@ -57,10 +57,37 @@
     model.body = @"iOS10PushMessage";
     model.timeInterval = 10;
     model.userInfo = @{@"b":@"b"};
+    model.categoryIdentifier = @"RequestIdentifier";
     
-    [TJLocalPush pushLocalNotificationModel:model withCompletionHandler:^(NSError *error) {
-        NSLog(@"iOS10Push:error = %@",error);
+    [TJLocalPush pushLocalNotificationModel:model withCompletionHandler:^(NSError *error, TJNotificationModel *model) {
+        if (model) {
+            [self addDefaultCategorys:model.categoryIdentifier];
+        }else {
+            NSLog(@"iOS10Push:error = %@",error);
+            if (!error) {
+                
+            }else {
+                
+            }
+        }
     }];
+}
+
+//添加响应
+- (void)addDefaultCategorys:(NSString *)requestIdentifier
+{
+    // 设置响应
+    UNNotificationAction * foregroundAction = [UNNotificationAction actionWithIdentifier:@"foregroundActionIdentifier" title:@"收到了" options:UNNotificationActionOptionForeground];
+    
+    // 设置文本响应
+    UNTextInputNotificationAction * destructiveTextAction = [UNTextInputNotificationAction actionWithIdentifier:@"destructiveTextActionIdentifier" title:@"我想说两句" options:UNNotificationActionOptionDestructive|UNNotificationActionOptionForeground textInputButtonTitle:@"发送" textInputPlaceholder:@"想说什么?"];
+    
+    // 初始化策略对象,这里的categoryWithIdentifier一定要与需要使用Category的UNNotificationRequest的identifier匹配(相同)才可触发
+    UNNotificationCategory * category = [UNNotificationCategory categoryWithIdentifier:requestIdentifier actions:@[foregroundAction,destructiveTextAction] intentIdentifiers:@[@"foregroundActionIdentifier",@"foregroundActionIdentifier"] options:UNNotificationCategoryOptionCustomDismissAction];
+    
+    //直接通过UNUserNotificationCenter设置策略即可
+    [[TJLocalPush PushCenter] setNotificationCategories:[NSSet setWithObjects:category, nil]];
+    
 }
 
 - (void)didReceiveMemoryWarning {

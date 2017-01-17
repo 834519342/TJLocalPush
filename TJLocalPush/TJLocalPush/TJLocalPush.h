@@ -40,7 +40,7 @@
  *  @param model 推送对象
  *  @param completionHandler 结果
  */
-+ (void)pushLocalNotificationModel:(TJNotificationModel *)model withCompletionHandler:(void(^)(NSError *error))completionHandler;
++ (void)pushLocalNotificationModel:(TJNotificationModel *)model withCompletionHandler:(void(^)(NSError *error , TJNotificationModel *model))completionHandler;
 
 /** 获取当前推送对象属性设置，只读，不能更改。
  */
