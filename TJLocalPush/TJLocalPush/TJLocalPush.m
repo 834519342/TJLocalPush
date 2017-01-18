@@ -48,13 +48,7 @@
     }
 }
 
-//保存model
-- (void)setTempModel:(TJNotificationModel *)tempModel
-{
-    
-}
-
-+ (void)pushLocalNotificationModel:(TJNotificationModel *)model withCompletionHandler:(void(^)(NSError *error, TJNotificationModel *model))completionHandler;
++ (void)pushLocalNotificationModel:(TJNotificationModel *)model NotificationModel:(void(^)(TJNotificationModel *model))notificationModel withCompletionHandler:(void(^)(NSError *error))completionHandler;
 {
     //创建一个包含待通知内容的 UNMutableNotificationContent 对象，注意不是UNNotificationContent，此对象为不可变对象。
     UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
@@ -124,13 +118,44 @@
     //添加推送成功后处理
     [[TJLocalPush PushCenter] addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
         if (completionHandler) {
-            completionHandler(error,nil);
+            completionHandler(error);
         }
     }];
     
-    if (completionHandler) {
-        completionHandler(nil,model);
+    //回调model值
+    if (notificationModel) {
+        notificationModel(model);
     }
+}
+
+//清除响应
++ (void)removeNotificationCategories:(NSString *)categoryIdentifier withCompletionHandler:(void(^)(NSError *error))completionHandler;
+{
+    
+    [[TJLocalPush PushCenter] getNotificationCategoriesWithCompletionHandler:^(NSSet<UNNotificationCategory *> * _Nonnull categories) {
+        NSError *error;
+        
+        NSEnumerator *enumerator = [categories objectEnumerator];
+        for (UNNotificationCategory *object in enumerator) {
+            
+            if ([object.identifier isEqualToString:categoryIdentifier]) {
+                
+                [[TJLocalPush PushCenter] setNotificationCategories:[NSSet setWithObjects:[UNNotificationCategory categoryWithIdentifier:categoryIdentifier actions:@[] intentIdentifiers:@[] options:UNNotificationCategoryOptionNone], nil]];
+                
+                error = nil;
+                
+                if (completionHandler) {
+                    completionHandler(error);
+                }
+            }else {
+                error = [[NSError alloc] initWithDomain:@"没有匹配的" code:100 userInfo:nil];
+                
+                if (completionHandler) {
+                    completionHandler(error);
+                }
+            }
+        }
+    }];
 }
 
 

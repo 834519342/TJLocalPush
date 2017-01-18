@@ -40,7 +40,12 @@
  *  @param model 推送对象
  *  @param completionHandler 结果
  */
-+ (void)pushLocalNotificationModel:(TJNotificationModel *)model withCompletionHandler:(void(^)(NSError *error , TJNotificationModel *model))completionHandler;
++ (void)pushLocalNotificationModel:(TJNotificationModel *)model NotificationModel:(void(^)(TJNotificationModel *model))notificationModel withCompletionHandler:(void(^)(NSError *error))completionHandler;
+
+/**清除响应
+ * @param categoryIdentifier 推送id
+ */
++ (void)removeNotificationCategories:(NSString *)categoryIdentifier withCompletionHandler:(void(^)(NSError *error))completionHandler;
 
 /** 获取当前推送对象属性设置，只读，不能更改。
  */

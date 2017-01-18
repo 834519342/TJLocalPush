@@ -57,19 +57,18 @@
     model.body = @"iOS10PushMessage";
     model.timeInterval = 10;
     model.userInfo = @{@"b":@"b"};
-    model.categoryIdentifier = @"RequestIdentifier";
+//    model.categoryIdentifier = @"RequestIdentifier";
     
-    [TJLocalPush pushLocalNotificationModel:model withCompletionHandler:^(NSError *error, TJNotificationModel *model) {
+    [TJLocalPush pushLocalNotificationModel:model NotificationModel:^(TJNotificationModel *model) {
         if (model) {
-            [self addDefaultCategorys:model.categoryIdentifier];
-        }else {
-            NSLog(@"iOS10Push:error = %@",error);
-            if (!error) {
-                
-            }else {
-                
-            }
+            //清除响应
+            [TJLocalPush removeNotificationCategories:model.categoryIdentifier withCompletionHandler:^(NSError *error) {
+                NSLog(@"%@",error);
+                [self addDefaultCategorys:model.categoryIdentifier];
+            }];
         }
+    } withCompletionHandler:^(NSError *error) {
+        NSLog(@"iOS10Push:error = %@",error);
     }];
 }
 
@@ -83,7 +82,7 @@
     UNTextInputNotificationAction * destructiveTextAction = [UNTextInputNotificationAction actionWithIdentifier:@"destructiveTextActionIdentifier" title:@"我想说两句" options:UNNotificationActionOptionDestructive|UNNotificationActionOptionForeground textInputButtonTitle:@"发送" textInputPlaceholder:@"想说什么?"];
     
     // 初始化策略对象,这里的categoryWithIdentifier一定要与需要使用Category的UNNotificationRequest的identifier匹配(相同)才可触发
-    UNNotificationCategory * category = [UNNotificationCategory categoryWithIdentifier:requestIdentifier actions:@[foregroundAction,destructiveTextAction] intentIdentifiers:@[@"foregroundActionIdentifier",@"foregroundActionIdentifier"] options:UNNotificationCategoryOptionCustomDismissAction];
+    UNNotificationCategory * category = [UNNotificationCategory categoryWithIdentifier:requestIdentifier actions:@[foregroundAction,destructiveTextAction] intentIdentifiers:@[@"foregroundActionIdentifier",@"foregroundActionIdentifier"] options:UNNotificationCategoryOptionNone];
     
     //直接通过UNUserNotificationCenter设置策略即可
     [[TJLocalPush PushCenter] setNotificationCategories:[NSSet setWithObjects:category, nil]];
