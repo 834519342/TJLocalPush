@@ -25,7 +25,6 @@
         self.badge = 1;
         self.userInfo = nil;
         self.attachments = nil;
-        
     }
     return self;
 }
